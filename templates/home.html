@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRAnimation - Convert Text to Animation</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional CSS styles for improved design */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #2980b9, #3498db);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ffd700; /* Change color on hover */
+        }
+
+        .main {
+            width: 100%;
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .welcome img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .content p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #2ecc71;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #27ae60; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+        <section id="welcome" class="welcome">
+            <h1>Welcome to SRAnimation</h1>
+            <img src="2.jpg" alt="SRAnimation - Convert Text to Animation">
+        </section> 
+        <section id="features" class="content">
+            <h2>Bring Your Stories to Life</h2>
+            <p>SRAnimation turns your text story ideas into captivating video animations effortlessly. Get started now!</p>
+            <a href="#contact" class=></a>
+        </section>
+        <section id="contact" class="content">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or inquiries, feel free to reach out to us.</p>
+            <p>Email: info@sranimation.com</p>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            background-size: 600% 600%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .main {
+            text-align: center;
+        }
+
+        .content {
+            margin-top: 50px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .menu ul li {
+            margin: 0 20px;
+            transition: transform 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .menu ul li:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu ul li h2 {
+            font-size: 24px;
+            color: #fff;
+            margin: 10px 0;
+        }
+
+        .menu ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .icon {
+            font-size: 36px;
+            margin-right: 10px;
+        }
+
+        /* Move Text to Text Animation to the right */
+        .menu ul li.text-animation {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header class="navbar">
+            <!-- Your navigation menu -->
+        </header>
+
+        <section class="content">
+            <h1 style="color: #fff; margin-top: 0; font-size: 36px;">Welcome To Our Services</h1>
+
+            <h2 style="color: #fff; font-size: 28px;">Our Services</h2>
+
+            <div class="menu">
+                <ul>
+                    <li>
+                        <h2 style="color: #fff;">Text To Video Animation</h2>
+                        <div>
+                            <a href="txtvdo.html"><span class="icon">🎥</span> Click Here</a>
+                        </div>
+                    </li>
+                    <li class="text-animation">
+                        <h2 style="color: #fff;">Text To Text Animation</h2> 
+                        <div>
+                            <a href="txtanm.html"><span class="icon">📝</span> Click Here</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>

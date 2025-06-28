@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=tjdevice-width, initial-scale=1.0">
+  <title>Text to Animation</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f30808;
+    }
+
+    #animationContainer {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: right;
+      color: #111010;
+    }
+
+    #inputText {
+      margin-bottom: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    #animateButton {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label for="inputText">Enter Text:</label>
+    <input type="text" id="inputText">
+    <button id="animateButton" onclick="animateText()">Animate Text</button>
+  </div>
+
+  <div id="animationContainer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    function animateText() {
+      const inputText = document.getElementById('inputText').value;
+      const animationContainer = document.getElementById('animationContainer');
+      
+      // Clear previous animation
+      animationContainer.innerHTML = '';
+
+
+      // Create a new div for the animation
+      const animatedTextContainer = document.createElement('div');
+      animatedTextContainer.textContent = inputText;
+      animatedTextContainer.id = 'animatedText';
+
+      // Append the animatedTextContainer to the animationContainer
+      animationContainer.appendChild(animatedTextContainer);
+
+      // Animate the text
+      anime({
+        targets: '#animatedText',
+        translateX: 250,
+        easing: 'easeInOutQuad',
+        duration: 1000,
+        direction: 'alternate',
+      });
+    }
+  </script>
+</body>
+</html>

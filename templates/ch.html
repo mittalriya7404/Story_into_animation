@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        background-image: url('2.jpg'); /* Background image URL */
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .reset-password-form {
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
+    }
+    
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .logo img {
+        width: 100px; /* Adjust the size of the logo */
+        height: 100px;
+        border-radius: 50%; /* Circular border */
+        border: 2px solid #333; /* Border color */
+    }
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    form {
+        text-align: center;
+    }
+    
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    
+    button {
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Text color */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #0056b3; /* Button background color on hover */
+    }
+    
+</style>
+<body>
+    <div class="container">
+        <div class="reset-password-form">
+            <div class="logo">
+                <img src="SRA.png" alt="Logo">
+            </div>
+            <h2>Reset Password</h2>
+            <form id="resetForm">
+                <input type="text" name="emailOrMobile" placeholder="Enter Email or Mobile Number" required>
+                <button type="button" onclick="sendOTP()">Send OTP</button>
+                <input type="text" name="otp" placeholder="Enter OTP" required>
+                <input type="password" name="newPassword" placeholder="Enter New Password" required>
+                <input type="password" name="confirmPassword" placeholder="Confirm New Password" required>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Jadocument.getElementById('resetForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Extract the data from the form
+    var emailOrMobile = document.getElementsByName('emailOrMobile')[0].value;
+    var otp = document.getElementsByName('otp')[0].value;
+    var newPassword = document.getElementsByName('newPassword')[0].value;
+    var confirmPassword = document.getElementsByName('confirmPassword')[0].value;
+
+    // Check if new passwords match
+    if (newPassword !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+
+    // Verify the OTP
+    fetch('/verify-otp', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ emailOrMobile: emailOrMobile, otp: otp, newPassword: newPassword }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Password has been reset successfully.');
+        } else {
+            alert('Failed to reset password. ' + data.message);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+function sendOTP() {
+    var emailOrMobile = document.getElementsByName('emailOrMobile')[0].value;
+
+    // Send the OTP
+    fetch('/send-otp', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ emailOrMobile: emailOrMobile }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('OTP has been sent.');
+        } else {
+            alert('Failed to send OTP. ' + data.message);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+vaScript code...
+    </script>
+</body>
+</html>

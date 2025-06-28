@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 400px;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    #logo {
+      border-radius: 50%;
+    }
+
+    label {
+      font-weight: bold;
+      color: #666;
+    }
+
+    input[type="text"],
+    select,
+    button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input[type="color"] {
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #animationContainer {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4285f4;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="logo" src="SRA.png" alt="Logo" width="100"><br><br>
+    <label for="inputText">Enter Text:</label><br>
+    <input type="text" id="inputText"><br>
+    <label for="fontSelect">Select Font:</label><br>
+    <select id="fontSelect">
+      <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Comic Sans MS">Comic Sans MS</option>
+      <!-- Add more font options as needed -->
+    </select><br>
+    <label for="colorSelect">Select Color:</label>
+    <input type="color" id="colorSelect">
+    <button onclick="animateText()">Animate Text</button>
+    <button onclick="downloadText()">Download Animated Text</button>
+  </div>
+
+  <div id="animationContainer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    function animateText() {
+      const inputText = document.getElementById('inputText').value.trim();
+      const font = document.getElementById('fontSelect').value;
+      const color = document.getElementById('colorSelect').value;
+      const animationContainer = document.getElementById('animationContainer');
+      
+      if (!inputText) {
+        alert("Please enter text to animate.");
+        return;
+      }
+
+      // Clear previous animation
+      animationContainer.innerHTML = '';
+
+      // Create a new div for the animation
+      const animatedTextContainer = document.createElement('div');
+      animatedTextContainer.textContent = inputText;
+      animatedTextContainer.id = 'animatedText';
+      animatedTextContainer.style.fontFamily = font; // Apply selected font
+      animatedTextContainer.style.color = color; // Apply selected color
+
+      // Append the animatedTextContainer to the animationContainer
+      animationContainer.appendChild(animatedTextContainer);
+
+      // Animate the text
+      anime({
+        targets: '#animatedText',
+        translateY: [-20, 0],
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 1000,
+        complete: function(anim) {
+          animationContainer.style.opacity = 1;
+          animationContainer.style.animation = 'fadeIn 0.5s ease forwards';
+        }
+      });
+    }
+
+    function downloadText() {
+      const animatedText = document.getElementById('animatedText').textContent;
+      const blob = new Blob([animatedText], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'animated_text.txt';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>

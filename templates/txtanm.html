@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('a\ \(3\).jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .container:hover {
+      border-color: #007bff;
+    }
+
+    #logo {
+      border-radius: 50%;
+    }
+
+    #animationContainer {
+      margin-top: 40px;
+      font-size: 28px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="logo" src="SRA.png" alt="Logo" width="100"><br><br>
+    <label for="inputText">Enter Text:</label><br>
+    <input type="text" id="inputText"><br><br>
+    <label for="fontSelect">Select Font:</label><br>
+    <select id="fontSelect">
+      <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Comic Sans MS">Comic Sans MS</option>
+      <option value="Impact">Impact</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Trebuchet MS">Trebuchet MS</option>
+      <option value="Arial Black">Arial Black</option>
+      <option value="Lucida Console">Lucida Console</option>
+      <option value="Palatino Linotype">Palatino Linotype</option>
+      <option value="Courier">Courier</option>
+      <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+      <option value="Garamond">Garamond</option>
+      <option value="Bookman Old Style">Bookman Old Style</option>
+      <option value="Book Antiqua">Book Antiqua</option>
+      <option value="Palatino">Palatino</option>
+      <option value="Noto Sans">Noto Sans</option>
+      <option value="Nirmala UI">Nirmala UI (Hindi)</option>
+      <option value="Mangal">Mangal (Hindi)</option>
+      <option value="Noto Sans Devanagari">Noto Sans Devanagari (Hinglish)</option>
+    </select><br><br>
+    <label for="colorSelect">Select Color:</label><br>
+    <input type="color" id="colorSelect"><br><br>
+    <button onclick="animateText()">Animate Text</button>
+    <button onclick="downloadText()">Download Animated Text</button>
+  </div>
+
+  <div id="animationContainer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    function animateText() {
+      const inputText = document.getElementById('inputText').value.trim();
+      const font = document.getElementById('fontSelect').value;
+      const color = document.getElementById('colorSelect').value;
+      const animationContainer = document.getElementById('animationContainer');
+      
+      if (!inputText) {
+        alert("Please enter text to animate.");
+        return;
+      }
+
+      // Clear previous animation
+      animationContainer.innerHTML = '';
+
+      // Create a new div for the animation
+      const animatedTextContainer = document.createElement('div');
+      animatedTextContainer.textContent = inputText;
+      animatedTextContainer.id = 'animatedText';
+      animatedTextContainer.style.fontFamily = font; // Apply selected font
+      animatedTextContainer.style.color = color; // Apply selected color
+
+      // Append the animatedTextContainer to the animationContainer
+      animationContainer.appendChild(animatedTextContainer);
+
+      // Animate the text
+      anime({
+        targets: '#animatedText',
+        translateY: [-20, 0],
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 1000,
+        complete: function(anim) {
+          animationContainer.style.opacity = 1;
+          animationContainer.style.animation = 'fadeIn 0.5s ease forwards';
+        }
+      });
+    }
+
+    function downloadText() {
+      const animatedText = document.getElementById('animatedText').textContent;
+      const blob = new Blob([animatedText], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'animated_text.txt';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>

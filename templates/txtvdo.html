@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story to Animation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Convert Story to Animation</h1>
+        <form method="POST" action="/">
+            <textarea id="story" name="story" placeholder="Enter your story here..." rows="10" cols="50"></textarea>
+            <br>
+            <button type="submit" class="submit-btn">Generate Animation</button>
+        </form>
+        
+        <div id="result">
+            <!-- Output video link will be shown here -->
+        </div>
+    </div>
+
+    <script>
+        // This will handle the form submission and display the video
+        const form = document.querySelector('form');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent the default form submission
+
+            const story = document.getElementById('story').value;
+            
+            if (story.trim() === '') {
+                alert('Please enter a story!');
+                return;
+            }
+
+            // Show loading message while the videos are being processed
+            resultDiv.innerHTML = '<p>Generating animation...</p>';
+
+            // Create FormData to send the story text
+            const formData = new FormData();
+            formData.append('story', story);
+
+            // Send the story to the Flask backend
+            fetch('/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(result => {
+                // Show the result (either a success message or error)
+                resultDiv.innerHTML = `<p>${result}</p>`;
+            })
+            .catch(error => {
+                resultDiv.innerHTML = '<p>There was an error generating the animation.</p>';
+            });
+        });
+    </script>
+</body>
+</html>

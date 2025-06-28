@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .icon {
+            float: left; /* Adjust to 'right' if you want to move it to the right */
+            margin-right: 20px; /* Add space between the logo and the menu */
+        }
+        .icon img {
+            border-radius: 50%;
+        }
+        .menu ul li {
+            display: inline;
+            margin-right: 10px; /* Adjust the space between menu items */
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+    <div class="navbar">
+        <!-- Add logo here -->
+        <div class="icon">
+            <img src="SRA.png" alt="SRAnimation Logo" width="120px" height="110px">
+            <mix-blend-mode><color-burn></color-burn></mix-blend-mode>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <h1>SRAnimation <br><span>Simply convert your text</span> <br> into Animation</h1>
+        <p class="par"> <br>  
+            <br></p>
+
+        <button class="cn"><a href="reg.html">JOIN US</a></button>
+        <div class="form">
+            <h2>Login Here</h2>
+            <form id="form">
+                <input type="text" name="username" placeholder="Enter Email or Mobile Number">
+                <input type="password" name="password" placeholder="Enter Password Here">
+                <button class="btnn" type="submit">Login</button>
+            </form>
+            <p class="link">Don't have an account<br>
+                <a href="signup.html">Sign up</a> here</p>
+            <p class="link">Forgot your password?<br>
+                <a href="forget.html">Reset it here</a></p>
+            <p class="liw">Log in with</p>
+
+            <div class="icons">
+                <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-google"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the values of email and password fields
+        var email = document.getElementsByName("username")[0].value;
+        var password = document.getElementsByName("password")[0].value;
+
+        // Perform login validation here
+        // For demonstration purposes, assume the login is successful
+        var isLoggedIn = true; // Change this based on actual login validation
+
+        if (isLoggedIn) {
+            // Redirect to the home page after successful login
+            window.location.href = "service.html"; // Replace "index.html" with your home page URL
+        } else {
+            // Display an error message if login fails
+            alert("Login failed. Please check your credentials.");
+        }
+    });
+</script>
+</body>
+</html>
